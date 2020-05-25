@@ -13,7 +13,6 @@
             </div>
         </div>
         <div id="comments">
-            <input type="hidden" class="commentId" value="0">
 
         </div>
     </#if>
