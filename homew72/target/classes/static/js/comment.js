@@ -1,6 +1,7 @@
 'use strict';
 
-function addComment(id) {
+function addComment() {
+    let id = document.getElementById("themeId").getAttribute("value")
     let form = document.getElementById("form-comment");
     let data = new FormData(form);
     let name = "_csrf"
@@ -12,6 +13,7 @@ function addComment(id) {
         method: 'POST',
         body: data
     }).then(r => r.json());
+    //window.location.replace("http://localhost:8000/theme/1");
 }
 
 class Comment{
@@ -45,15 +47,14 @@ function addComment1(elem) {
     document.getElementById("comments").insertBefore(elem,document.getElementById("comments").firstChild);
 }
 
-async function getComments(themeId) {
+async function getComments() {
+    let themeId = document.getElementById("themeId").getAttribute("value")
     let lastCommentId=0;
-    let comms = document.getElementsByClassName("commentId");
-    if(comms.length>1){
-        lastCommentId = comms[1].value;
+    let c = document.getElementsByClassName("commentId")
+    if(c.length>0){
+        lastCommentId = c[0].getAttribute("value")
     }
-        let response = await fetch('http://localhost:8000/chat/comment/'+themeId+"/"+lastCommentId).catch(function (error) {
-
-        });
+    let response = await fetch('http://localhost:8000/chat/comment/'+themeId+"/"+lastCommentId);
     if (response.ok) { // если HTTP-статус в диапазоне 200-299
         // получаем тело ответа (см. про этот метод ниже)
         let commentJson = await response.json();
@@ -68,4 +69,7 @@ async function getComments(themeId) {
     }
 }
 
-let timerId = setInterval(getComments(1),1000);
+window.addEventListener("load",function f(){
+    let timerId = setInterval(getComments,1000);
+})
+

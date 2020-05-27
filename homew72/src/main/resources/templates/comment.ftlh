@@ -12,6 +12,7 @@
                 </#if>
             </div>
         </div>
+        <input type="hidden" id="themeId" value="${theme.id}">
         <div id="comments">
 
         </div>
@@ -33,7 +34,7 @@
                             <label for="Name2">Comment text</label>
                             <input minlength="5" maxlength="100" name="text" type="text" class="form-control" id="text" aria-describedby="emailHelp" placeholder="Enter comment text">
                         </div>
-                        <button type="button" onclick="addComment(${theme.id})" class="btn btn-primary">Add</button>
+                        <button type="button" onclick="addComment()" class="btn btn-primary">Add</button>
                     </form>
                 </div>
             </div>
